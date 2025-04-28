@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="汉诺塔（Tower of Hanoi）教学演示，一个经典的递归算法可视化。Interactive Tower of Hanoi tutorial, visualizing a classic recursive algorithm.">
+    <meta name="keywords"
+        content="汉诺塔, Tower of Hanoi, 递归, 算法, 可视化, 教学, Hanoi, Recursion, Algorithm, Visualization, Tutorial">
+    <title>汉诺塔教学</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- 可以在这里引入图标库，例如 Font Awesome -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> -->
+</head>
+
+<body>
+    <header>
+        <h1>汉诺塔教学</h1>
+        <h2>Tower of Hanoi Tutorial</h2>
+        <h3>一种经典的递归算法演示</h3>
+        <p class="en-text">A Classic Recursive Algorithm Demonstration</p>
+        <button id="theme-toggle-button" title="切换主题 / Toggle Theme">☀️</button> <!-- 添加主题切换按钮 -->
+    </header>
+
+    <main>
+        <div class="hanoi-container">
+            <div id="move-count">步数: 0 <span class="en-text">Moves: 0</span></div> <!-- 移到容器内，并添加英文 -->
+            <div class="tower" id="tower-A">A</div> <!-- 添加塔标识 -->
+            <div class="tower" id="tower-B">B</div> <!-- 添加塔标识 -->
+            <div class="tower" id="tower-C">C</div> <!-- 添加塔标识 -->
+            <!-- 圆盘将由JS动态创建 -->
+        </div>
+
+        <div class="controls">
+            <div> <!-- 分组便于布局 -->
+                <label for="num-disks-input">圆盘数量 (4-20): <span class="en-text">Number of Disks (4-20):</span></label>
+                <input type="number" id="num-disks-input" min="4" max="20" value="8">
+            </div>
+            <div> <!-- 分组便于布局 -->
+                <label for="speed-slider">动画速度: <span class="en-text">Animation Speed:</span></label>
+                <input type="range" id="speed-slider" min="100" max="1000" value="500" step="50">
+                <span id="speed-value">0.6s</span> <!-- 初始值与CSS同步 -->
+            </div>
+            <div> <!-- 分组便于布局 -->
+                <label>控制按钮: <span class="en-text">Control Buttons:</span></label>
+                <button id="start-button">开始 <span class="en-text">Start</span></button> <!-- JS会动态改变文字 -->
+                <button id="prev-button" disabled>上一步 <span class="en-text">Previous</span></button>
+                <button id="next-button" disabled>下一步 <span class="en-text">Next</span></button>
+                <button id="reset-button">重置 <span class="en-text">Reset</span></button> <!-- 添加重置按钮 -->
+            </div>
+        </div>
+    </main>
+
+    <aside class="usage-instructions"> <!-- 使用 aside 语义化 -->
+        <h4>使用说明 <span class="en-text">Instructions</span></h4>
+        <ul>
+            <li>选择圆盘数量 (4-20)。 <span class="en-text">Select the number of disks (4-20).</span></li>
+            <li>点击"开始"按钮启动动画。 <span class="en-text">Click the "Start" button to begin animation.</span></li>
+            <li>使用"暂停"/"继续"控制动画。 <span class="en-text">Use "Pause"/"Continue" to control animation.</span></li>
+            <li>在暂停状态下，可使用"上一步"/"下一步"单步查看。 <span class="en-text">When paused, use "Previous"/"Next" for step-by-step
+                    viewing.</span></li>
+            <li>拖动滑块调整动画速度。 <span class="en-text">Drag slider to adjust animation speed.</span></li>
+            <li>点击"重置"恢复初始状态。 <span class="en-text">Click "Reset" to restore initial state.</span></li>
+        </ul>
+    </aside>
+
+    <aside class="wechat-qr-code"> <!-- 使用 aside 语义化 -->
+        <img src="qrcode.png" alt="微信二维码 / WeChat QR Code">
+        <p>扫码关注我的微信 <span class="en-text">Scan to follow my WeChat</span></p>
+    </aside>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

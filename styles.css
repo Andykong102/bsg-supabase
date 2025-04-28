@@ -1,0 +1,607 @@
+/* 全局基础色彩变量 */
+:root {
+    /* 深色主题 (默认) */
+    --primary-dark-theme: #b388ff;
+    --primary-dark-dark-theme: #7c4dff;
+    --primary-light-dark-theme: #e1bee7;
+    --background-dark-theme: #18171c;
+    --card-bg-dark-theme: #232129;
+    --text-main-dark-theme: #ffffff;
+    --text-secondary-dark-theme: #bdbdbd;
+    --accent-dark-theme: #ff80ab;
+    --danger-dark-theme: #ff5252;
+    --shadow-dark-theme: 0 4px 24px rgba(0, 0, 0, 0.25);
+    --tower-gradient-dark-theme: linear-gradient(180deg, var(--primary-dark-dark-theme) 60%, var(--primary-light-dark-theme) 100%);
+    --button-gradient-dark-theme: linear-gradient(90deg, var(--primary-dark-dark-theme), var(--primary-dark-theme));
+    --button-hover-gradient-dark-theme: linear-gradient(90deg, var(--accent-dark-theme), var(--primary-dark-theme));
+    --input-border-dark-theme: var(--primary-dark-theme);
+
+    /* 浅色主题 */
+    --primary-light-theme: #7c4dff;
+    --primary-dark-light-theme: #512da8;
+    --primary-light-light-theme: #d1c4e9;
+    --background-light-theme: #f5f5f5;
+    --card-bg-light-theme: #ffffff;
+    --text-main-light-theme: #212121;
+    --text-secondary-light-theme: #757575;
+    --accent-light-theme: #ff4081;
+    --danger-light-theme: #f44336;
+    --shadow-light-theme: 0 3px 15px rgba(0, 0, 0, 0.15);
+    --tower-gradient-light-theme: linear-gradient(180deg, var(--primary-dark-light-theme) 60%, var(--primary-light-light-theme) 100%);
+    --button-gradient-light-theme: linear-gradient(90deg, var(--primary-dark-light-theme), var(--primary-light-theme));
+    --button-hover-gradient-light-theme: linear-gradient(90deg, var(--accent-light-theme), var(--primary-light-theme));
+    --input-border-light-theme: var(--primary-light-theme);
+}
+
+/* 初始化应用深色主题变量 */
+body {
+    --primary: var(--primary-dark-theme);
+    --primary-dark: var(--primary-dark-dark-theme);
+    --primary-light: var(--primary-light-dark-theme);
+    --background: var(--background-dark-theme);
+    --card-bg: var(--card-bg-dark-theme);
+    --text-main: var(--text-main-dark-theme);
+    --text-secondary: var(--text-secondary-dark-theme);
+    --accent: var(--accent-dark-theme);
+    --danger: var(--danger-dark-theme);
+    --shadow: var(--shadow-dark-theme);
+    --tower-gradient: var(--tower-gradient-dark-theme);
+    --button-gradient: var(--button-gradient-dark-theme);
+    --button-hover-gradient: var(--button-hover-gradient-dark-theme);
+    --input-border: var(--input-border-dark-theme);
+
+    font-family: 'Poppins', 'Microsoft YaHei', Arial, sans-serif;
+    background-color: var(--background);
+    color: var(--text-main);
+    margin: 0;
+    min-height: 100vh;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* 切换到浅色主题 */
+body.light-theme {
+    --primary: var(--primary-light-theme);
+    --primary-dark: var(--primary-dark-light-theme);
+    --primary-light: var(--primary-light-light-theme);
+    --background: var(--background-light-theme);
+    --card-bg: var(--card-bg-light-theme);
+    --text-main: var(--text-main-light-theme);
+    --text-secondary: var(--text-secondary-light-theme);
+    --accent: var(--accent-light-theme);
+    --danger: var(--danger-light-theme);
+    --shadow: var(--shadow-light-theme);
+    --tower-gradient: var(--tower-gradient-light-theme);
+    --button-gradient: var(--button-gradient-light-theme);
+    --button-hover-gradient: var(--button-hover-gradient-light-theme);
+    --input-border: var(--input-border-light-theme);
+}
+
+header,
+h1,
+h2,
+h3,
+h4 {
+    color: var(--text-main);
+    text-align: center;
+    margin: 0;
+}
+
+header {
+    background: linear-gradient(180deg, var(--primary) 80%, transparent 100%);
+    padding: 32px 24px 16px 24px;
+    /* 增加右边距给按钮留空间 */
+    border-radius: 0 0 32px 32px;
+    box-shadow: var(--shadow);
+    position: relative;
+    /* 用于按钮定位 */
+    transition: background 0.3s;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+h2,
+h3 {
+    font-weight: 400;
+    color: var(--primary-light);
+    transition: color 0.3s;
+}
+
+/* 主题切换按钮 */
+#theme-toggle-button {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    background: var(--card-bg);
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.4em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow);
+    transition: background 0.3s, color 0.3s, transform 0.2s;
+}
+
+#theme-toggle-button:hover {
+    background: var(--primary);
+    color: var(--card-bg);
+    transform: scale(1.1) rotate(15deg);
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0;
+    padding: 0 16px;
+    /* 增加左右padding */
+}
+
+/* 汉诺塔主容器卡片 */
+.hanoi-container {
+    background: var(--card-bg);
+    border-radius: 24px;
+    box-shadow: var(--shadow);
+    padding: 32px 24px 24px 24px;
+    margin: 32px 0 0 0;
+    width: 700px;
+    min-width: 300px;
+    /* 减小最小宽度 */
+    max-width: 95vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    position: relative;
+    border-bottom: 6px solid var(--primary-dark);
+    transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+
+.tower {
+    width: 16px;
+    height: 220px;
+    background: var(--tower-gradient);
+    border-radius: 8px;
+    position: relative;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    margin: 0 16px;
+    /* 减小塔间距 */
+    transition: background 0.3s;
+}
+
+.disk {
+    height: 24px;
+    border-radius: 12px;
+    margin-bottom: 2px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: bottom 0.5s, left 0.5s, background-color 0.3s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    font-weight: bold;
+    color: #fff;
+    /* 盘上数字颜色保持白色 */
+    text-align: center;
+    line-height: 24px;
+    font-size: 1.1em;
+}
+
+/* 步数气泡 */
+#move-count {
+    position: absolute;
+    top: -32px;
+    right: 24px;
+    /* 移动到右上角 */
+    left: auto;
+    /* 取消 left 定位 */
+    transform: none;
+    /* 取消 transform */
+    background: var(--primary);
+    color: var(--background);
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: 24px;
+    padding: 8px 24px;
+    box-shadow: var(--shadow);
+    z-index: 10;
+    transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+/* 控制区卡片 */
+.controls {
+    background: var(--card-bg);
+    border-radius: 24px;
+    box-shadow: var(--shadow);
+    padding: 24px 32px;
+    margin: 32px 0 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    /* 调整gap */
+    width: 700px;
+    min-width: 300px;
+    max-width: 95vw;
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+label {
+    font-size: 1.1em;
+    color: var(--text-secondary);
+    margin-right: 8px;
+    transition: color 0.3s;
+}
+
+input[type="range"] {
+    width: 180px;
+    accent-color: var(--primary);
+    background: transparent;
+}
+
+input[type="number"] {
+    background: var(--background);
+    color: var(--text-main);
+    border: 2px solid var(--input-border);
+    border-radius: 12px;
+    padding: 8px 16px;
+    font-size: 1.1em;
+    width: 60px;
+    outline: none;
+    margin-left: 8px;
+    transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+
+input[type="number"]:focus {
+    border-color: var(--accent);
+}
+
+button {
+    padding: 12px 24px;
+    /* 调整padding */
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    background: var(--button-gradient);
+    color: var(--text-main);
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+    transition: background 0.2s, transform 0.1s, color 0.3s;
+    margin: 0 4px;
+    /* 调整按钮间距 */
+}
+
+body.light-theme button {
+    color: #ffffff;
+    /* 浅色模式下按钮文字强制白色 */
+}
+
+button:hover:not(:disabled) {
+    background: var(--button-hover-gradient);
+    transform: translateY(-2px) scale(1.04);
+}
+
+button:disabled {
+    background: #444;
+    color: #888;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+body.light-theme button:disabled {
+    background: #ccc;
+    color: #999;
+}
+
+/* 侧边说明卡片 */
+.usage-instructions {
+    position: fixed;
+    /* top: 120px; */
+    /* 移除 top 定位 */
+    bottom: 24px;
+    /* 添加 bottom 定位，距离底部 24px */
+    left: 24px;
+    background: var(--card-bg);
+    color: var(--text-main);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    padding: 24px 24px 16px 24px;
+    z-index: 1000;
+    font-size: 1em;
+    max-width: 300px;
+    /* 调整宽度 */
+    min-width: 200px;
+    border: 1.5px solid var(--primary-dark);
+    transition: background 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+
+.usage-instructions h4 {
+    color: var(--primary);
+    font-size: 1.2em;
+    border-bottom: 1px solid var(--primary-light);
+    padding-bottom: 6px;
+    margin-bottom: 12px;
+    transition: color 0.3s, border-color 0.3s;
+}
+
+.usage-instructions ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.usage-instructions li {
+    margin-bottom: 10px;
+    /* 增加列表项间距 */
+    color: var(--text-main);
+    /* 主要文字用主色 */
+    transition: color 0.3s;
+}
+
+/* 英文说明弱化样式 */
+.en-text {
+    display: block;
+    font-size: 0.85em;
+    color: var(--text-secondary);
+    opacity: 0.85;
+    margin-top: 3px;
+    transition: color 0.3s;
+}
+
+/* 二维码卡片 */
+.wechat-qr-code {
+    position: fixed;
+    /* top: 120px; */
+    /* 移除 top 定位 */
+    bottom: 24px;
+    /* 添加 bottom 定位，距离底部 24px */
+    right: 24px;
+    background: var(--card-bg);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    padding: 18px 18px 8px 18px;
+    text-align: center;
+    z-index: 1000;
+    border: 1.5px solid var(--primary-dark);
+    transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+
+.wechat-qr-code img {
+    width: 110px;
+    height: 110px;
+    margin-bottom: 8px;
+    border-radius: 12px;
+    border: 2px solid var(--primary-light);
+    transition: border-color 0.3s;
+}
+
+.wechat-qr-code p {
+    margin: 0;
+    font-size: 13px;
+    color: var(--text-secondary);
+    transition: color 0.3s;
+}
+
+/* 响应式适配 */
+@media (max-width: 1200px) {
+
+    .usage-instructions,
+    .wechat-qr-code {
+        max-width: 240px;
+        /* 调整宽度 */
+    }
+}
+
+@media (max-width: 992px) {
+
+    /* 调整断点 */
+    .hanoi-container,
+    .controls {
+        width: 95vw;
+        padding: 16px 2vw;
+    }
+
+    /* 在这个宽度下，侧边栏仍然保持固定在底部 */
+    main {
+        /* 确保底部有足够空间给固定的侧边栏 */
+        /* 计算一个大致的高度：说明或二维码的高度 + 底部间距 */
+        padding-bottom: 200px;
+        /* 估算值，可根据实际情况调整 */
+    }
+
+    .wechat-qr-code {
+        /* order: 3; */
+        /* order 仅在 flex/grid 布局中有效，这里不再需要 */
+    }
+}
+
+@media (max-width: 767px) {
+
+    /* 新增或调整此断点专门处理手机竖屏 */
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1rem;
+    }
+
+    h3 {
+        font-size: 0.9rem;
+    }
+
+    #theme-toggle-button {
+        width: 36px;
+        height: 36px;
+        font-size: 1.2em;
+        top: 15px;
+        right: 15px;
+    }
+
+    main {
+        padding: 0 8px;
+        /* 减小左右 padding */
+        padding-bottom: 24px;
+        /* 恢复较小的底部 padding，因为侧边栏不再固定 */
+    }
+
+    .hanoi-container {
+        min-height: 200px;
+        /* 进一步减小最小高度 */
+        padding: 24px 12px 12px 12px;
+        /* 调整内边距 */
+        border-bottom-width: 4px;
+        /* 减小底边框 */
+        margin-top: 24px;
+    }
+
+    #move-count {
+        padding: 6px 16px;
+        font-size: 1em;
+        top: 8px;
+        /* 调整位置 */
+        right: 8px;
+        border-radius: 16px;
+    }
+
+    .tower {
+        height: 150px;
+        /* 减小塔高 */
+        width: 12px;
+        /* 减小塔宽 */
+        border-radius: 6px;
+        margin: 0 8px;
+        /* 减小塔间距 */
+    }
+
+    .disk {
+        height: 18px;
+        /* 减小圆盘高度 */
+        font-size: 0.85em;
+        /* 减小圆盘数字大小 */
+        line-height: 18px;
+        border-radius: 9px;
+        margin-bottom: 1px;
+        /* 减小圆盘间距 */
+    }
+
+    .controls {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+        padding: 16px;
+        margin-top: 24px;
+    }
+
+    .controls>div {
+        /* 控制项分组 */
+        display: flex;
+        flex-direction: column;
+        /* 强制内部垂直堆叠 */
+        align-items: stretch;
+        /* 使内部元素宽度一致 */
+        gap: 8px;
+    }
+
+    label {
+        font-size: 1em;
+        /* 调整标签字体 */
+        text-align: center;
+        /* 居中文本 */
+    }
+
+    input[type="range"] {
+        width: 100%;
+        /* 滑块占满宽度 */
+    }
+
+    input[type="number"] {
+        width: 80px;
+        /* 调整数字输入框宽度 */
+        align-self: center;
+        /* 居中 */
+        margin-left: 0;
+        padding: 6px 12px;
+        font-size: 1em;
+    }
+
+    #speed-value {
+        align-self: center;
+        /* 居中速度值 */
+    }
+
+    .controls div:last-child label {
+        /* 最后一个控件组的标签 */
+        margin-bottom: 5px;
+        /* 在按钮组上方增加一点间距 */
+    }
+
+    button {
+        padding: 10px 16px;
+        font-size: 1em;
+        margin: 0;
+        /* 移除左右 margin */
+        width: 100%;
+        /* 按钮宽度占满 */
+    }
+
+    /* 让步进按钮和重置按钮在一行 */
+    .controls div:last-child {
+        flex-direction: row;
+        /* 按钮组恢复横向 */
+        flex-wrap: wrap;
+        /* 允许换行 */
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .controls div:last-child button {
+        width: auto;
+        /* 按钮宽度自适应内容 */
+        flex-grow: 1;
+        /* 平分空间 */
+    }
+
+    /* 在这个宽度下，侧边栏不再固定，随页面滚动 */
+    .usage-instructions,
+    .wechat-qr-code {
+        position: static;
+        margin: 24px auto;
+        /* 上下间距，左右居中 */
+        max-width: 90vw;
+        border-width: 1px;
+        padding: 16px;
+    }
+
+    .usage-instructions h4,
+    .wechat-qr-code p {
+        font-size: 1.1em;
+    }
+
+    .usage-instructions li,
+    .wechat-qr-code p .en-text {
+        font-size: 0.95em;
+    }
+
+    .wechat-qr-code img {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+/* 可以保留或移除 480px 的断点，因为 767px 已经处理了大部分手机竖屏场景 */
+/*
+@media (max-width: 480px) {
+    // 如果需要更进一步的微调，可以在这里添加
+}
+*/
