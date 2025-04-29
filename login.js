@@ -101,7 +101,7 @@ async function handleLogin(event) {
             // 登录成功
             console.log('登录成功:', data.user);
             // 重定向到主应用页面
-            window.location.href = 'index.html';
+            window.location.href = 'main_page.html';
         } else {
             // 理论上不应发生，但以防万一
             console.warn('Supabase signInWithPassword returned no error and no user.');
