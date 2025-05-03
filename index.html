@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>登录 - 汉诺塔教学</title>
+    <title>登录 / 注册</title>
     <link rel="stylesheet" href="styles.css"> <!-- 复用主样式 -->
     <link rel="stylesheet" href="login.css"> <!-- 登录特定样式 -->
     <!-- 引入 Supabase JS 客户端 -->
@@ -20,23 +20,48 @@
     </header>
 
     <main>
-        <div class="login-container">
-            <form id="login-form">
+        <div class="container">
+
+            <!-- 登录表单 -->
+            <div id="login-section">
                 <h2>登录 <span class="en-text">Login</span></h2>
-                <div class="form-group">
-                    <label for="email">邮箱: <span class="en-text">Email:</span></label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">密码: <span class="en-text">Password:</span></label>
-                    <input type="password" id="password" name="password" required>
-                </div>
-                <button type="submit">登录 <span class="en-text">Login</span></button>
-                <p id="error-message" class="error-message" style="display: none;"></p> <!-- 用于显示错误信息 -->
-                <!-- 可以添加注册链接 -->
-                <p class="signup-link">还没有账户？ <a href="#">注册</a> <span class="en-text">No account yet? <a href="#">Sign
-                            up</a></span></p>
-            </form>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="login-email">邮箱: <span class="en-text">Email:</span></label>
+                        <input type="email" id="login-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">密码: <span class="en-text">Password:</span></label>
+                        <input type="password" id="login-password" name="password" required>
+                    </div>
+                    <button type="submit">登录 <span class="en-text">Login</span></button>
+                    <p id="login-error-message" class="error-message" style="display: none;"></p>
+                </form>
+                <p>还没有账户？ <a href="#" id="show-register">点击注册</a></p>
+            </div>
+
+            <!-- 注册表单 (初始隐藏) -->
+            <div id="register-section" style="display: none;">
+                <h2>注册 <span class="en-text">Register</span></h2>
+                <form id="register-form">
+                    <div class="form-group">
+                        <label for="register-email">邮箱: <span class="en-text">Email:</span></label>
+                        <input type="email" id="register-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password">密码: <span class="en-text">Password:</span></label>
+                        <input type="password" id="register-password" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-password">确认密码: <span class="en-text">Confirm Password:</span></label>
+                        <input type="password" id="confirm-password" name="confirm-password" required>
+                    </div>
+                    <button type="submit">注册 <span class="en-text">Register</span></button>
+                    <p id="register-message" class="message" style="display: none;"></p>
+                </form>
+                <p>已有账户？ <a href="#" id="show-login">点击登录</a></p>
+            </div>
+
         </div>
     </main>
 
